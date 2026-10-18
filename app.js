@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tvSearch: '',
     currentPlayingChannel: null,
     hlsInstance: null,
-    youtubeChannel: 'https://youtube.com'
+    youtubeChannel: 'https://www.youtube.com/channel/UCAdY9HQG4Pf7_eLIQ6Tr3oA?sub_confirmation=1'
   };
 
   // DOM Elements - TV Player
@@ -133,8 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // 2. YOUTUBE MAJBURIY OBUNA (YOUTUBE-ONLY GATE)
   // =========================================================
+  const DEFAULT_YT_CHANNEL = 'https://www.youtube.com/channel/UCAdY9HQG4Pf7_eLIQ6Tr3oA?sub_confirmation=1';
   function updateSubGateLinks() {
-    const ytUrl = localStorage.getItem('dreamland_yt_channel') || state.youtubeChannel || 'https://youtube.com';
+    const ytUrl = localStorage.getItem('dreamland_yt_channel') || DEFAULT_YT_CHANNEL;
     state.youtubeChannel = ytUrl;
     if (gateYtLinkBtn) {
       gateYtLinkBtn.href = ytUrl;
@@ -469,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. ADMIN AUTHENTICATION & MANAGEMENT (Faqat ID: 267256427)
   // =========================================================
   function populateAdminFields() {
-    const savedYt = localStorage.getItem('dreamland_yt_channel') || state.youtubeChannel || 'https://youtube.com';
+    const savedYt = localStorage.getItem('dreamland_yt_channel') || DEFAULT_YT_CHANNEL;
     const savedPin = localStorage.getItem('dreamland_admin_pin') || '7777';
     if (cfgYtChannel) cfgYtChannel.value = savedYt;
     if (cfgAdminPin) cfgAdminPin.value = savedPin;
