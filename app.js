@@ -191,6 +191,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function toggleFullscreen() {
     triggerHaptic('light');
+
+    // 1. Telegram Mini App to'liq ekrani (Android + iOS uchun asosiy yo'l)
+    if (tg) {
+      if (tg.isFullscreen) {
+        if (typeof tg.exitFullscreen === 'function') {
+          tg.exitFullscreen();
+          return;
+        }
+      }
+      if (typeof tg.requestFullscreen === 'function') {
+        tg.requestFullscreen();
+        return;
+      }
+    }
+
+    // 2. Zaxira: Telegram bo'lmagan muhitlar uchun brauzer API'si
     const targetElement = tvPlayerContainer || tvVideoPlayer;
 
     if (!isFullscreenActive()) {
